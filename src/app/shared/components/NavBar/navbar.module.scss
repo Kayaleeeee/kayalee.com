@@ -9,12 +9,17 @@
   align-items: center;
   gap: 24px;
   padding: 16px;
+
+  @include mq.mobile {
+    gap: 0px;
+  }
 }
 
 .linkItem {
   font-size: 24px;
   font-weight: 400;
   padding: 0 16px;
+  text-align: center;
 
   color: #fff;
   transition: background 0.3s ease, scale 0.3s ease;

@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 
 const staticMenuList = [
-  { title: "About Me", link: "/about" },
+  { title: "About", link: "/about" },
   { title: "Project", link: "/project" },
   { title: "Blog", link: "/blog" },
 ];
