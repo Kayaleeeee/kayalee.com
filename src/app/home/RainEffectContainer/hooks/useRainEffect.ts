@@ -114,12 +114,17 @@ export const useRainEffect = (
       ctx.font = `bold ${titleFontSize}px hahmlet`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+
       ctx.fillText(TITLE, titleX, titleY);
 
       const subTitleFontSize = titleFontSize * 0.4;
       ctx.font = `400 ${subTitleFontSize}px hahmlet`;
       ctx.textAlign = "center";
       ctx.textBaseline = "top";
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
 
       // sub title 그리기
       ctx.fillText(SUB_TITLE, titleX, titleY - titleFontSize);
@@ -193,6 +198,14 @@ export const useRainEffect = (
     });
     container.addEventListener("mouseleave", handleMouseOut);
     container.addEventListener("resize", handleResize);
+
+    if (isMobileResolution) {
+      setTimeout(() => {
+        const simulatedX = width / 2 + 100;
+        const simulatedY = height / 2;
+        mouse.set(simulatedX, simulatedY);
+      }, 500);
+    }
 
     // Clean up
     return () => {
