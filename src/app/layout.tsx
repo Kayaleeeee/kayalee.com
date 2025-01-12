@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hahmlet } from "next/font/google";
 import "./globals.scss";
 import { NavBar } from "./shared/components";
+import { PageTransition } from "./shared/components";
 
 const hehmlet = Hahmlet({
   variable: "--font-hahmlet",
@@ -15,7 +16,7 @@ const notoSans = Hahmlet({
 
 export const metadata: Metadata = {
   title: "kaya-lee.com",
-  description: "Welcome aboard",
+  description: "Kaya Lee - Frontend Developer",
 };
 
 export default function RootLayout({
@@ -27,7 +28,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${hehmlet.variable} ${notoSans.variable}`}>
         <NavBar />
-        <div>{children}</div>
+        <PageTransition>
+          <div>{children}</div>
+        </PageTransition>
       </body>
     </html>
   );
