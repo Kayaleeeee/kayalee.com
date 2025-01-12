@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Hahmlet, Noto_Sans_KR } from "next/font/google";
+import { Hahmlet } from "next/font/google";
 import "./globals.scss";
 import { NavBar } from "./shared/components";
 
