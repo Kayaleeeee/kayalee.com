@@ -10,7 +10,7 @@ import { navy } from "@/app/shared/constant/color";
 
 const TITLE = "Kaya Lee";
 const SUB_TITLE = "Frontend Developer";
-const MAX_TITLE_SIZE = 150;
+const MAX_TITLE_SIZE = 200;
 
 export const useRainEffect = (
   containerRef: RefObject<HTMLDivElement | null>
@@ -98,7 +98,7 @@ export const useRainEffect = (
 
       // 텍스트 스타일 설정
       const titleFontSize = Math.min(
-        Math.round((width / (isMobile ? 8 : 7)) * window.devicePixelRatio),
+        Math.round((width / (isMobile ? 8 : 5)) * window.devicePixelRatio),
         MAX_TITLE_SIZE
       );
 
@@ -112,8 +112,6 @@ export const useRainEffect = (
       ctx.font = `400 ${subTitleFontSize}px hahmlet`;
       ctx.textAlign = "center";
       ctx.textBaseline = "top";
-
-      console.group(titleFontSize, subTitleFontSize);
 
       // sub title 그리기
       ctx.fillText(SUB_TITLE, titleX, titleY - titleFontSize);
