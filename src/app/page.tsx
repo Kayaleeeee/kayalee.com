@@ -1,4 +1,4 @@
-import { RainEffectContainer } from "./Home/RainEffectContainer";
+import { RainEffectContainer } from "./home/RainEffectContainer";
 import styles from "./page.module.scss";
 import { NavBar } from "./shared/components";
 
