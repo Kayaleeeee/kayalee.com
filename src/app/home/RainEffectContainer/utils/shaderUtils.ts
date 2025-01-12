@@ -18,6 +18,12 @@ const float delta = 1.4;
 
 void main(){
     vec2 uv = vUv;
+
+    // 화면 비율 보정
+    vec2 aspectRatio = vec2(resolution.x / resolution.y, 1.0);
+    vec2 normalizedUV = (uv - mouse / resolution) * aspectRatio;
+
+
     if (frame == 0){
         gl_FragColor = vec4(0.0);
         return;
@@ -48,12 +54,13 @@ void main(){
     pVel *= 1.0 - 0.002 * delta;
     pressure *= 0.999;
 
+    float dist = length(normalizedUV);
+    float radius = 0.05;
+
     vec2 mouseUV = mouse / resolution;
-    if(mouse.x > 0.0) {
-        float dist = distance(uv, mouseUV);
-        if(dist <= 0.05) {
-            pressure += 2.0 * (1.0 - dist / 0.05);
-        }
+
+    if(mouse.x > 0.0 && dist <= radius) {
+        pressure += 2.0 * (1.0 - dist / radius);
     }
 
     gl_FragColor = vec4(pressure, pVel,

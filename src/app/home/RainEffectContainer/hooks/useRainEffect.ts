@@ -21,7 +21,12 @@ export const useRainEffect = (
     if (!container) return;
     if (typeof window === "undefined") return;
 
-    const isMobile = window.innerWidth <= 500;
+    const isMobileResolution = window.innerWidth <= 500;
+    const isMobileSafari =
+      /iP(hone|od|ad)/.test(navigator.platform) &&
+      /Safari/.test(navigator.userAgent) &&
+      !/Chrome/.test(navigator.userAgent);
+
     const scene = new THREE.Scene();
     const simScene = new THREE.Scene();
 
@@ -43,12 +48,13 @@ export const useRainEffect = (
 
     const width = window.innerWidth * window.devicePixelRatio;
     const height = window.innerHeight * window.devicePixelRatio;
+    const filter = isMobileSafari ? THREE.NearestFilter : THREE.LinearFilter;
 
     const options = {
       format: THREE.RGBAFormat,
-      type: THREE.FloatType,
-      minFilter: THREE.LinearFilter,
-      magFilter: THREE.LinearFilter,
+      type: THREE.HalfFloatType,
+      minFilter: filter,
+      magFilter: filter,
       stencilBuffer: false,
       depthBuffer: false,
     };
@@ -94,11 +100,13 @@ export const useRainEffect = (
       ctx.fillStyle = navy["0"];
       ctx.fillRect(0, 0, width, height);
       const titleX = width / 2; // TITLE의 X 좌표
-      const titleY = height / 2; // TITLE의 Y 좌표
+      const titleY = isMobileResolution ? height / 2 : height / 2; // TITLE의 Y 좌표
 
       // 텍스트 스타일 설정
       const titleFontSize = Math.min(
-        Math.round((width / (isMobile ? 8 : 5)) * window.devicePixelRatio),
+        Math.round(
+          (width / (isMobileResolution ? 8 : 5)) * window.devicePixelRatio
+        ),
         MAX_TITLE_SIZE
       );
 
@@ -118,8 +126,8 @@ export const useRainEffect = (
     }
 
     const textTexture = new THREE.CanvasTexture(canvas);
-    textTexture.minFilter = THREE.LinearFilter;
-    textTexture.magFilter = THREE.LinearFilter;
+    textTexture.minFilter = filter;
+    textTexture.magFilter = filter;
     textTexture.format = THREE.RGBAFormat;
 
     // Animation loop
@@ -145,9 +153,20 @@ export const useRainEffect = (
 
     animate();
 
-    const handleMouseMove = (event: any) => {
+    const handleMouseMove = (event: MouseEvent) => {
       mouse.x = event.clientX * window.devicePixelRatio;
       mouse.y = (window.innerHeight - event.clientY) * window.devicePixelRatio;
+    };
+
+    const handleTouch = (event: TouchEvent) => {
+      event.preventDefault(); // 기본 동작 방지
+
+      if (!event?.touches[0] || !event.touches[0]?.clientX) return;
+
+      mouse.x = event.touches[0].clientX * window.devicePixelRatio;
+      mouse.y =
+        (window.innerHeight - event.touches[0].clientY) *
+        window.devicePixelRatio;
     };
 
     const handleMouseOut = () => {
@@ -164,7 +183,14 @@ export const useRainEffect = (
       rtA.setSize(width, height);
       rtB.setSize(width, height);
     };
+
     container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("touchstart", handleTouch, {
+      passive: false,
+    });
+    container.addEventListener("touchmove", handleTouch, {
+      passive: false,
+    });
     container.addEventListener("mouseleave", handleMouseOut);
     container.addEventListener("resize", handleResize);
 
@@ -172,6 +198,7 @@ export const useRainEffect = (
     return () => {
       container.removeEventListener("mousemove", handleMouseMove);
       container.removeEventListener("mouseleave", handleMouseOut);
+      container.removeEventListener("touchstart", handleTouch);
       container.removeEventListener("resize", handleResize);
       container.removeChild(renderer.domElement);
     };
