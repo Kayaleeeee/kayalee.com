@@ -51,8 +51,8 @@ void main(){
     vec2 mouseUV = mouse / resolution;
     if(mouse.x > 0.0) {
         float dist = distance(uv, mouseUV);
-        if(dist <= 0.02) {
-            pressure += 2.0 * (1.0 - dist / 0.02);
+        if(dist <= 0.05) {
+            pressure += 2.0 * (1.0 - dist / 0.05);
         }
     }
 
@@ -78,7 +78,7 @@ varying vec2 vUv;
 void main() {
     vec4 data = texture2D(textureA, vUv);
 
-    vec2 distortion = 0.3 * data.zw;
+    vec2 distortion = 0.1 * data.zw;
     vec4 color = texture2D(textureB, vUv + distortion);
 
     vec3 normal = normalize(vec3(-data.z * 2.0, 0.5, -data.w * 2.0));

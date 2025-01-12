@@ -1,17 +1,10 @@
 .page {
   --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  background: orange;
+  background: var(--navy-0);
 
   align-items: center;
   justify-items: center;
   min-height: 100svh;
-  gap: 64px;
   font-family: var(--font-geist-sans);
 }
 
@@ -20,21 +13,7 @@
   flex-direction: column;
 }
 
-h1.title {
-  font-size: 8rem;
-}
-
 .footer {
   display: flex;
   gap: 24px;
-}
-
-.footer a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer img {
-  flex-shrink: 0;
 }
