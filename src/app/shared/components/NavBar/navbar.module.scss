@@ -1,4 +1,4 @@
-@import "../../styles/mediaQuery.scss";
+@use "../../styles/mediaQuery.scss" as mq;
 
 .wrapper {
   position: absolute;
@@ -24,7 +24,7 @@
     scale: 1.1;
   }
 
-  @include mobile {
+  @include mq.mobile {
     font-size: 18px;
   }
 }

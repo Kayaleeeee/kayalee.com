@@ -1,13 +1,27 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./navbar.module.scss";
+import { useMemo } from "react";
+import { usePathname } from "next/navigation";
 
-const menuList = [
-  { title: "About Me", link: "/me" },
+const staticMenuList = [
+  { title: "About Me", link: "/about" },
   { title: "Project", link: "/project" },
   { title: "Blog", link: "/blog" },
 ];
 
 export const NavBar = () => {
+  const pathName = usePathname();
+
+  const menuList = useMemo(() => {
+    const isHome = pathName === "/";
+
+    return isHome
+      ? staticMenuList
+      : [{ title: "Home", link: "/" }, ...staticMenuList];
+  }, [pathName]);
+
   return (
     <nav className={styles.wrapper}>
       {menuList.map((item) => {
