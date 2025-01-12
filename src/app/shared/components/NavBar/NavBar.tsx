@@ -7,8 +7,8 @@ import { usePathname } from "next/navigation";
 
 const staticMenuList = [
   { title: "About", link: "/about" },
-  { title: "Project", link: "/project" },
-  { title: "Blog", link: "/blog" },
+  //   { title: "Project", link: "/project" },
+  //   { title: "Blog", link: "/blog" },
 ];
 
 export const NavBar = () => {
