@@ -1,0 +1,31 @@
+@import "../../styles/mediaQuery.scss";
+
+.wrapper {
+  position: absolute;
+  width: 100svw;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  padding: 16px;
+}
+
+.linkItem {
+  font-size: 28px;
+  font-weight: 400;
+  padding: 0 16px;
+
+  color: #fff;
+  transition: background 0.3s ease, scale 0.3s ease;
+
+  &:hover {
+    background: #000;
+    // font-weight: 700;
+    scale: 1.1;
+  }
+
+  @include mobile {
+    font-size: 18px;
+  }
+}

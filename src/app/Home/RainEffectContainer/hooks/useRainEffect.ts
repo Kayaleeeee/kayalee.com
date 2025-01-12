@@ -8,6 +8,10 @@ import {
 } from "../utils/shaderUtils";
 import { navy } from "@/app/shared/constant/color";
 
+const TITLE = "Kaya Lee";
+const SUB_TITLE = "Frontend Developer";
+const MAX_TITLE_SIZE = 150;
+
 export const useRainEffect = (
   containerRef: RefObject<HTMLDivElement | null>
 ) => {
@@ -15,7 +19,6 @@ export const useRainEffect = (
     const container = containerRef.current;
 
     if (!container) return;
-
     if (typeof window === "undefined") return;
 
     const isMobile = window.innerWidth <= 500;
@@ -90,29 +93,30 @@ export const useRainEffect = (
     if (ctx) {
       ctx.fillStyle = navy["0"];
       ctx.fillRect(0, 0, width, height);
+      const titleX = width / 2; // TITLE의 X 좌표
+      const titleY = height / 2; // TITLE의 Y 좌표
 
       // 텍스트 스타일 설정
-      const fontSize = isMobile
-        ? 350
-        : Math.round((width / 7) * window.devicePixelRatio);
+      const titleFontSize = Math.min(
+        Math.round((width / (isMobile ? 8 : 7)) * window.devicePixelRatio),
+        MAX_TITLE_SIZE
+      );
+
       ctx.fillStyle = navy["5"];
-      ctx.font = `bold ${fontSize}px hahmlet`;
-      ctx.textAlign = "center"; // 가로 중심
-      ctx.textBaseline = "middle"; // 세로 중심
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = "high";
+      ctx.font = `bold ${titleFontSize}px hahmlet`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(TITLE, titleX, titleY);
 
-      // 텍스트 그리기
-      if (isMobile) {
-        ctx.save();
-        ctx.translate(width / 2, height / 2); // 캔버스 중심으로 이동
+      const subTitleFontSize = titleFontSize * 0.4;
+      ctx.font = `400 ${subTitleFontSize}px hahmlet`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "top";
 
-        ctx.rotate((90 * Math.PI) / 180);
-        ctx.fillText("Kaya Lee", 0, 0);
-        ctx.restore();
-      } else {
-        ctx.fillText("Kaya Lee", width / 2, height / 2);
-      }
+      console.group(titleFontSize, subTitleFontSize);
+
+      // sub title 그리기
+      ctx.fillText(SUB_TITLE, titleX, titleY - titleFontSize);
     }
 
     const textTexture = new THREE.CanvasTexture(canvas);

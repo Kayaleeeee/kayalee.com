@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { Hahmlet } from "next/font/google";
+import { Hahmlet, Noto_Sans_KR } from "next/font/google";
 import "./globals.scss";
 
 const hehmlet = Hahmlet({
   variable: "--font-hahmlet",
+  subsets: ["latin"],
+});
+
+const notoSans = Hahmlet({
+  variable: "--font-noto-sans",
   subsets: ["latin"],
 });
 
@@ -19,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${hehmlet.variable}`}>{children}</body>
+      <body className={`${hehmlet.variable} ${notoSans.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }

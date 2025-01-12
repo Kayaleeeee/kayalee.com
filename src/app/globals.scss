@@ -1,3 +1,6 @@
+// variables
+$mobile-breakpoint: 768px;
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -21,7 +24,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Noto Sans KR", Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
