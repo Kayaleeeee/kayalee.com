@@ -1,22 +1,74 @@
 @use "../shared/styles/mediaQuery.scss" as mq;
 
-.wrapper {
-  margin-top: 60px;
-  padding: 24px;
+@mixin flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
 
+@mixin full-height {
   height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  scroll-snap-type: y mandatory; /* 스크롤 스냅 활성화 */
+}
+
+@mixin eighty-height {
+  height: 80vh;
 
   @include mq.mobile {
-    padding: 16px;
+    padding: 24px;
+    height: 50vh;
+  }
+}
+
+@mixin relative-container {
+  position: relative;
+  display: flex;
+  white-space: nowrap;
+}
+
+.wrapper {
+  margin-top: 60px;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.title {
+  font-size: max(4vw, 36px);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.description {
+  font-size: max(2.5vw, 30px);
+  line-height: 1.1;
+  word-break: keep-all;
+}
+
+.introWrapper {
+  width: 100vw;
+  height: calc(100vh - 70px);
+  padding: max(2vw, 24px);
+  overflow: hidden;
+
+  .sectionContainer {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+  }
+
+  .line {
+    display: flex;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    margin-top: 20px;
   }
 }
 
 .languageOptionList {
   display: inline-flex;
   gap: 16px;
+  padding: 24px;
 
   .item {
     cursor: pointer;
@@ -36,20 +88,134 @@
   }
 }
 
-.workingHistoryWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.descriptionContainer {
+  overflow: hidden;
+
+  .spacer {
+    @include eighty-height;
+  }
+
+  .scrollContainer {
+    @include relative-container;
+  }
+
+  .slide {
+    @include relative-container;
+    left: var(--slide-left);
+  }
+
+  .phrase {
+    padding-left: 1.25rem; // equivalent to px-5
+    padding-right: 1.25rem;
+    display: flex;
+    gap: 1.25rem; // equivalent to gap-5
+    align-items: center;
+    margin-bottom: 10px;
+
+    .image {
+      position: relative;
+      height: 7.5vw;
+      aspect-ratio: 4 / 2; // equivalent to aspect-[4/2]
+      border-radius: 9999px; // equivalent to rounded-full
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    .text {
+      line-height: 1;
+      font-weight: bold;
+      font-size: max(5.5vw, 52px);
+      text-transform: uppercase;
+    }
+  }
 }
 
-.pageContainer {
-  height: 100vh; /* 각 페이지가 화면 전체를 차지하도록 설정 */
-  width: 100vw;
-  scroll-snap-align: start; /* 스냅 위치 */
+.container {
+  position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 3rem;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
+  justify-content: center;
+  height: 80vh;
+  overflow: hidden;
+  clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+
+  .content {
+    position: relative;
+    z-index: 10;
+    padding: 5rem; // equivalent to p-20
+    mix-blend-mode: difference;
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .textUpperSmall {
+      width: 50vw;
+      font-size: 2vw;
+      align-self: flex-end;
+      mix-blend-mode: difference;
+      word-break: keep-all;
+    }
+
+    .textUpperLarge {
+      font-size: 5vw;
+      mix-blend-mode: difference;
+      color: #000;
+    }
+  }
+
+  .backgroundContainer {
+    position: fixed;
+    top: -10vh;
+    left: 0;
+    height: 120vh;
+    width: 100%;
+    background: blue;
+
+    .background {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.footerContainer {
+  .svgWrapper {
+    width: 100%;
+    margin-bottom: 5rem; // equivalent to mb-40
+
+    .text {
+      font-size: max(6px, 4px);
+      text-transform: uppercase;
+      fill: red; // inline style moved here
+    }
+  }
+
+  .logosContainer {
+    height: 150px; // equivalent to h-[250px]
+    background-color: black;
+    overflow: hidden;
+
+    .logos {
+      height: 100%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      align-items: center;
+      padding: 2.5rem; // equivalent to p-10
+    }
+
+    .logo {
+      overflow: hidden;
+      aspect-ratio: 1;
+      width: 3rem;
+    }
+  }
 }
