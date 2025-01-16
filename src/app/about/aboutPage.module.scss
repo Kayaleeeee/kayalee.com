@@ -175,10 +175,6 @@
     text-align: right;
     top: 55vh;
     right: 20px;
-
-    @include mq.mobile {
-      top: 45vh;
-    }
   }
 
   .highlight {
