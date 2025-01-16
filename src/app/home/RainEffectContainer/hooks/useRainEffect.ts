@@ -10,7 +10,6 @@ import { navy } from "@/app/shared/constant/color";
 
 const TITLE = "Kaya Lee";
 const SUB_TITLE = "Frontend Developer";
-const MAX_TITLE_SIZE = 200;
 
 export const useRainEffect = (
   containerRef: RefObject<HTMLDivElement | null>
@@ -26,6 +25,8 @@ export const useRainEffect = (
       /iP(hone|od|ad)/.test(navigator.platform) &&
       /Safari/.test(navigator.userAgent) &&
       !/Chrome/.test(navigator.userAgent);
+
+    const MAX_TITLE_SIZE = isMobileResolution ? 150 : 300;
 
     const scene = new THREE.Scene();
     const simScene = new THREE.Scene();
