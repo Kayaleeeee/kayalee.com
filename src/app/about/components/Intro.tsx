@@ -1,10 +1,14 @@
-import Image from "next/image";
-// import Background from "../../public/images/2.jpg";
 import { useScroll, useTransform, motion } from "framer-motion";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import styles from "../aboutPage.module.scss";
+import { LanguageType } from "../utils/getCurrentLanguage";
+import { translationText } from "../utils/translationText";
 
-export const Intro = () => {
+type Props = {
+  lang: LanguageType;
+};
+
+export const Intro = ({ lang }: Props) => {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -12,6 +16,10 @@ export const Intro = () => {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], ["0vh", "150vh"]);
+
+  const { title = "", description } = useMemo(() => {
+    return translationText["intro"][lang];
+  }, [lang]);
 
   return (
     <div className={styles.introWrapper}>
@@ -21,15 +29,13 @@ export const Intro = () => {
             marginTop: "5rem",
           }}
         />
-        <h1 className={styles.title}>비즈니스 지향적인 개발자</h1>
+        <h1 className={styles.title}>{title}</h1>
         <div
           style={{
             marginTop: "2rem",
           }}
         />
-        <p className={styles.description}>
-          비지니스 문제를 해결하는게 먼저니까
-        </p>
+        <p className={styles.description}>{description[0]}</p>
         <div className={styles.line}></div>
       </motion.div>
     </div>

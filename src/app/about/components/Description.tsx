@@ -6,8 +6,14 @@ import Lenis from "lenis";
 import Picture1 from "../../../../public/1.jpg";
 import Picture2 from "../../../../public/2.jpg";
 import Picture3 from "../../../../public/3.jpg";
+import { LanguageType } from "../utils/getCurrentLanguage";
+import { translationText } from "../utils/translationText";
 
-export const Description = () => {
+type Props = {
+  lang: LanguageType;
+};
+
+export const Description = ({ lang }: Props) => {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -24,6 +30,8 @@ export const Description = () => {
 
     requestAnimationFrame(raf);
   }, []);
+
+  const { description } = translationText["description"][lang];
 
   return (
     <div className={styles.descriptionContainer}>
@@ -55,10 +63,10 @@ export const Description = () => {
           style={{
             padding: "10vw 0",
             textAlign: "center",
+            whiteSpace: "pre-line",
           }}
         >
-          다양한 분야에서 문제를 정의하고 해결하며 실질적인 비즈니스 성과로
-          연결했어요.
+          {description[0]}
         </p>
       </div>
     </div>

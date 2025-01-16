@@ -1,8 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
 import styles from "../aboutPage.module.scss";
+import { LanguageType } from "../utils/getCurrentLanguage";
+import { translationText } from "../utils/translationText";
 
-export const Footer = () => {
+type Props = {
+  lang: LanguageType;
+};
+
+export const Footer = ({ lang }: Props) => {
+  const offsetValue = 42;
   const container = useRef(null);
   const paths = useRef<SVGTextPathElement[]>([]);
   const { scrollYProgress } = useScroll({
@@ -13,13 +20,20 @@ export const Footer = () => {
   useEffect(() => {
     scrollYProgress.on("change", (e) => {
       paths.current.forEach((path, i) => {
-        path.setAttribute("startOffset", -40 + i * 40 + e * 40 + "%");
+        path.setAttribute(
+          "startOffset",
+          -offsetValue + i * offsetValue + e * offsetValue + "%"
+        );
       });
     });
   }, []);
 
+  const { description } = translationText["footer"][lang];
+
   return (
     <div ref={container} className={styles.footerContainer}>
+      <div className={styles.openToPosition}>{description[0]}</div>
+
       <svg className={styles.svgWrapper} viewBox="0 0 250 90">
         <path
           fill="none"
@@ -37,7 +51,7 @@ export const Footer = () => {
                 startOffset={i * 40 + "%"}
                 href="#curve"
               >
-                CONTACT ME CONTACT ME CONTACT
+                CONTACT ME CONTACT ME CONTACT ME
               </textPath>
             );
           })}

@@ -1,17 +1,10 @@
 @use "./shared/styles/mediaQuery.scss" as mq;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --white: #ffffff;
+  --black: #000000;
   --navy-0: #000b58;
   --navy-5: #cbdceb;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 html,
@@ -24,8 +17,8 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--white);
+  background: var(--black);
   font-family: "Noto Sans KR", Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -57,11 +50,5 @@ a {
     .title {
       font-size: 4rem;
     }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
   }
 }
