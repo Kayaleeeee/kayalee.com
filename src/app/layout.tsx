@@ -17,6 +17,18 @@ const notoSans = Hahmlet({
 export const metadata: Metadata = {
   title: "kaya-lee.com",
   description: "Kaya Lee - Frontend Developer",
+  authors: { name: "Kaya Lee", url: "https://www.kaya-lee.com" },
+  keywords: ["frontend", "web", "developer", "react", "typescript", "nextjs"],
+  openGraph: {
+    title: "kaya-lee.com",
+    description: "Kaya Lee - Frontend Developer",
+    images: {
+      url: "/image/og-image.png",
+      type: "image/png",
+      width: 300,
+      height: 153,
+    },
+  },
 };
 
 export default function RootLayout({

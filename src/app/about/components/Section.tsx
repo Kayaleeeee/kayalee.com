@@ -18,7 +18,7 @@ export const Section = ({ lang }: Props) => {
   const circleScale = useTransform(
     scrollYProgress,
     [0, 0.5, 0.6, 1],
-    [1, 3, 3, 1]
+    [1, 2.5, 2.5, 1]
   ); // 원 크기 변화
   const circleX = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]); // 원 위치 변화
   const circleY = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]); // 원 위치 변화
