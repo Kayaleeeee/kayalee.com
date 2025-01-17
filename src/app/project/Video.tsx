@@ -19,7 +19,8 @@ export const Video = () => {
   };
 
   useEffect(() => {
-    videoRef.current?.play();
+    if (!videoRef.current) return;
+    videoRef.current.play();
 
     return () => videoRef.current?.pause();
   }, []);
@@ -32,6 +33,9 @@ export const Video = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        background: "#adadad",
+        borderRadius: "24px",
+        padding: "0 5px",
       }}
     >
       <video

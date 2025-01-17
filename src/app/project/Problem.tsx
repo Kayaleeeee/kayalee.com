@@ -96,8 +96,7 @@ export const Problem = () => {
               className={styles.problemItem}
               style={{
                 justifyContent,
-                // top: `${(isMobile ? 100 : 150) + index * 150}px`,
-                top: `calc(15vh + ${index * 20}vh)`,
+                top: `calc(12vh + ${index * 20}vh)`,
 
                 opacity: problemOpacity[index],
               }}

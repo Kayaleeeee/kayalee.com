@@ -96,6 +96,7 @@
         font-size: max(1.2vw, 20px);
         text-align: center;
         line-height: 1.2;
+        word-break: keep-all;
       }
     }
 
@@ -128,6 +129,7 @@
 
       p {
         color: #000;
+        word-break: keep-all;
       }
     }
   }
@@ -178,7 +180,9 @@
         margin-bottom: 20px;
         white-space: pre-wrap;
         text-align: center;
-        line-height: 1.5;
+        word-break: break-all;
+        line-height: 1.4;
+        word-break: keep-all;
       }
 
       .imageContainer {

@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./projectPage.module.scss";
 import { useScroll, useTransform, motion } from "motion/react";
-import { useIsMobile } from "../shared/hooks/useIsMobile";
 import { Video } from "./Video";
+import { useIsMobile } from "../shared/hooks/useIsMobile";
 
 const featureList = [
   {
     title: "견적 & 예약을 한 번에",
     description:
-      "풀세트부터 개별 장비까지, 빠르게 견적서를 생성하고 예약을 확정하세요.\n복잡했던 반납 절차를 클릭 몇 번으로 간단히 처리하고 실수를 줄일 수 있어요!",
+      "풀세트부터 개별 장비까지, 빠르게 견적서를 생성하고 예약을 확정하세요.\n\n복잡했던 반납 절차를 클릭 몇 번으로 간단히 처리하고 실수를 줄일 수 있어요!",
     source: [],
   },
   {
@@ -27,10 +27,9 @@ const featureList = [
 ];
 
 export const MainFeature = () => {
-  const { isMobile } = useIsMobile();
   const [isShowingVideo, setIsShowingVideo] = useState<boolean>(false);
   const container = useRef<HTMLDivElement>(null);
-
+  const { isMobile } = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
@@ -121,7 +120,7 @@ export const MainFeature = () => {
             style={{
               width: "100vw",
               position: "fixed",
-              top: "35vh",
+              ...(isMobile ? { bottom: "15vh" } : { top: "35vh" }),
             }}
           >
             <Video />
