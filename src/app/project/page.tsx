@@ -14,7 +14,7 @@ const ProjectPage = () => {
       <Hero />
       <Problem />
       <MainFeature />
-      <TechStack />
+      <TechStack lang="KR" />
     </div>
   );
 };

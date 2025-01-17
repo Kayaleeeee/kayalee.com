@@ -8,20 +8,20 @@ const featureList = [
   {
     title: "견적 & 예약을 한 번에",
     description:
-      "풀세트부터 개별 장비까지, 빠르게 견적서를 생성하고 예약을 확정하세요.\n\n복잡했던 반납 절차를 클릭 몇 번으로 간단히 처리하고 실수를 줄일 수 있어요!",
+      "풀세트부터 개별 장비까지, 빠르게 견적서를 생성하고 예약을 확정 할 수 있어요.\n\n복잡했던 반납 절차를 클릭 몇 번으로 간단히 처리하고 실수를 줄일 수 있어요!",
     source: [],
   },
   {
     title: "실시간 예약 현황 확인",
     description:
-      "대여 가능한 장비를 실시간으로 파악하고 고객 문의에 바로 대응하세요.",
+      "대여 가능한 장비를 실시간으로 파악하고 고객 문의에 바로 대응할 수 있도록",
     source: ["/image/calendar.png", "/image/equipment.png"],
   },
 
   {
     title: "매출 데이터 통합 관리",
     description:
-      "월별 매출 데이터를 시각적으로 확인하고 정산 내역을 체계적으로 관리하세요.",
+      "월별 매출 데이터를 시각적으로 확인하고 정산 내역을 체계적으로 관리할 수 있어요.",
     source: ["/image/payment.png"],
   },
 ];
@@ -37,8 +37,8 @@ export const MainFeature = () => {
 
   const titleOpacity = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.8, 1],
-    [0, 1, 1, 0]
+    [0, 0.1, 0.8, 0.84, 1],
+    [0, 1, 1, 0, 0]
   );
 
   const featureOpacity = featureList.map((_, index) => {
@@ -49,7 +49,7 @@ export const MainFeature = () => {
 
     return useTransform(
       scrollYProgress,
-      [0, start, mid, end, pause, pause + 0.2], // 완전히 사라졌다가 잠시 멈춘 후 나타남
+      [0, start, mid, end, pause, pause + 0.1], // 완전히 사라졌다가 잠시 멈춘 후 나타남
       [0, 0, 1, 1, 1, 0] // 나타났다 완전히 사라짐
     );
   });
@@ -81,7 +81,11 @@ export const MainFeature = () => {
       <motion.h1 className={styles.title} style={{ opacity: titleOpacity }}>
         메인 기능
       </motion.h1>
-
+      <div
+        style={{
+          height: "200vh",
+        }}
+      />
       <div className={styles.featureListWrapper}>
         {featureList.map((feature, featureIndex) => {
           return (
@@ -118,7 +122,6 @@ export const MainFeature = () => {
         {isShowingVideo && (
           <div
             style={{
-              width: "100vw",
               position: "fixed",
               ...(isMobile ? { bottom: "15vh" } : { top: "35vh" }),
             }}

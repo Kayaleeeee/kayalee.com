@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import styles from "./projectPage.module.scss";
 
 export const Video = () => {
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const container = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -19,7 +20,7 @@ export const Video = () => {
   };
 
   useEffect(() => {
-    if (!videoRef.current) return;
+    if (!videoRef.current || !isLoaded) return;
     videoRef.current.play();
 
     return () => videoRef.current?.pause();
@@ -29,23 +30,29 @@ export const Video = () => {
     <div
       ref={container}
       onClick={handleClickVideo}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#adadad",
-        borderRadius: "24px",
-        padding: "0 5px",
-      }}
+      className={styles.videoWrapper}
     >
-      <video
-        ref={videoRef}
-        className={styles.videoContainer}
-        autoPlay
-        src={"/video/reservation.mp4"}
-        muted
-        playsInline
-      />
+      <div
+        className={styles.wrapper}
+        style={{
+          background: isPlaying ? "#000" : "#adadad",
+        }}
+      >
+        <video
+          ref={videoRef}
+          className={styles.videoContainer}
+          autoPlay
+          src={"/video/reservation.mp4"}
+          muted
+          loop
+          playsInline
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          onLoad={() => {
+            setIsLoaded(true);
+          }}
+        />
+      </div>
     </div>
   );
 };

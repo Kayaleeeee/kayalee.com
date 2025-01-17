@@ -10,10 +10,25 @@
   padding: 0 2rem;
 }
 
+@mixin fixed-title {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  padding: 2rem;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  font-size: max(3vw, 24px);
+  pointer-events: none;
+}
+
 .heroWrapper {
   @include section-wrapper();
   position: relative;
-  margin-top: 60px;
+
+  pointer-events: none;
   height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
@@ -39,16 +54,7 @@
   position: relative;
 
   .title {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 5;
-    padding: 2rem;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    font-size: max(3vw, 24px);
-    pointer-events: none;
+    @include fixed-title();
   }
 
   .problemItemWrapper {
@@ -140,16 +146,7 @@
   height: 400vh;
 
   .title {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 5;
-    padding: 2rem;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    font-size: max(3vw, 24px);
-    pointer-events: none;
+    @include fixed-title();
   }
 
   .featureListWrapper {
@@ -218,12 +215,114 @@
   }
 }
 
-.videoContainer {
-  width: auto;
-  height: calc(100vh - 400px);
+.videoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+
+  .wrapper {
+    background: #adadad;
+    border-radius: 24px;
+  }
 
   @include mq.mobile {
     width: 100vw;
     height: auto;
+  }
+
+  .videoContainer {
+    width: auto;
+    height: calc(100vh - 400px);
+
+    @include mq.mobile {
+      width: 100vw;
+      height: auto;
+    }
+  }
+}
+
+.footerContainer {
+  @include section-wrapper();
+  height: 800vh;
+
+  .title {
+    @include fixed-title();
+  }
+
+  .techListWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+
+    @include mq.mobile {
+      flex-direction: column;
+    }
+
+    .techRow {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+
+      .techItem {
+        flex: 1;
+        max-width: 30%; /* 각 항목의 너비 제한 */
+        margin: 0 10px;
+        text-align: center;
+      }
+    }
+
+    .techItem {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+      max-width: calc((100vw - 150px) / 5);
+
+      position: fixed;
+      top: 20px;
+      width: 100%;
+      pointer-events: none;
+
+      @include mq.mobile {
+        top: 10px;
+        justify-content: flex-start;
+        max-width: calc((100vw - 40px) / 3);
+      }
+
+      h3 {
+        margin: 15px;
+      }
+
+      p {
+        padding: 10px;
+        font-size: 18px;
+        word-break: keep-all;
+
+        @include mq.mobile {
+          padding: 10px 0;
+        }
+      }
+
+      .iconWrapper {
+        width: 100px;
+        height: 100px;
+        background: #fff;
+        border-radius: 100%;
+        border: 1px solid #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .icon {
+        width: 60px;
+        aspect-ratio: 1;
+        object-fit: contain;
+      }
+    }
   }
 }
