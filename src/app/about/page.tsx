@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./aboutPage.module.scss";
 import { Intro } from "./components/Intro";
 import { Description } from "./components/Description";
 import { Section } from "./components/Section";
-import Lenis from "lenis";
 import { Footer } from "./components/Footer";
 import { CoreValue } from "./components/CoreValue";
 
@@ -16,6 +15,7 @@ import {
   LanguageType,
   mapLanguageToKey,
 } from "./utils/getCurrentLanguage";
+import { useSmoothScroll } from "../shared/hooks/useSmoothScroll";
 
 const langList: { key: LanguageType; value: string }[] = [
   { key: "KR", value: "한국어" },
@@ -23,7 +23,6 @@ const langList: { key: LanguageType; value: string }[] = [
 ];
 
 const AboutPage = () => {
-  const scrollingContainer = useRef<HTMLDivElement>(null);
   const [currentLang, setCurrentLang] = useState<LanguageType | null>(null);
 
   const setLanguageCookie = (lang: string) => {
@@ -53,21 +52,12 @@ const AboutPage = () => {
     configureLanguageByCookie();
   }, []);
 
-  useEffect(() => {
-    const lenis = new Lenis();
-
-    const raf = (time: number) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-
-    requestAnimationFrame(raf);
-  }, []);
+  useSmoothScroll();
 
   if (!currentLang) return null;
 
   return (
-    <div ref={scrollingContainer} className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <div className={styles.languageOptionList}>
         {langList.map((item) => (
           <div

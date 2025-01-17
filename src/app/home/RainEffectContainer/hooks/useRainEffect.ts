@@ -121,7 +121,7 @@ export const useRainEffect = (
       ctx.fillText(TITLE, titleX, titleY);
 
       const subTitleFontSize = titleFontSize * 0.4;
-      ctx.font = `400 ${subTitleFontSize}px hahmlet`;
+      ctx.font = `400 ${subTitleFontSize}px Noto Sans KR`;
       ctx.textAlign = "center";
       ctx.textBaseline = "top";
       ctx.imageSmoothingEnabled = true;
