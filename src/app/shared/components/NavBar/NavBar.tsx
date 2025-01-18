@@ -4,6 +4,7 @@ import styles from "./navbar.module.scss";
 const staticMenuList = [
   { title: "Home", link: "/" },
   { title: "About", link: "/about" },
+  { title: "Work", link: "/work" },
   { title: "Project", link: "/project" },
 ];
 

@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import styles from "./projectPage.module.scss";
 import { LanguageType } from "../about/utils/getCurrentLanguage";
 import { useScroll, motion, useTransform } from "motion/react";
-import { useIsMobile } from "../shared/hooks/useIsMobile";
 
 const techStackList = [
   {
@@ -37,59 +36,64 @@ type Props = {
 };
 
 export const TechStack = ({ lang }: Props) => {
-  const { isMobile } = useIsMobile();
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
   });
 
-  const titleOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.86, 1],
-    [0, 1, 1, 0]
-  );
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.1, 0.86], [0, 1, 1]);
+
+  const roleOpacity = useTransform(scrollYProgress, [0, 0.2, 0.86], [0, 1, 1]);
 
   const featureOpacity = techStackList.map((_, index) => {
-    const start = index * 0.2; // 이전 요소와 간격 늘리기
-    const mid = start + 0.05;
-    const end = start + 0.2; // 나타나는 구간
+    const start = index * 0.2 + 0.2; // 이전 요소와 간격 늘리기
 
     return useTransform(
       scrollYProgress,
-      [0, start, mid, end], // 완전히 사라졌다가 잠시 멈춘 후 나타남
-      [0, 0, 1, 1] // 나타났다 완전히 사라짐
+      [0, start], // 완전히 사라졌다가 잠시 멈춘 후 나타남
+      [0, 1] // 나타났다 완전히 사라짐
     );
   });
 
   return (
     <div className={styles.footerContainer} ref={container}>
       <motion.h1 className={styles.title} style={{ opacity: titleOpacity }}>
-        기술 스택
+        기술 스택 & 역할
       </motion.h1>
-      <div className={styles.techListWrapper}>
-        {techStackList.map((item, index) => (
-          <motion.div
-            key={`${item.title}_${index}`}
-            className={styles.techItem}
-            style={{
-              opacity: featureOpacity[index],
-              top: isMobile ? `calc(12vh + ${index * 120}px)` : 0,
-              left: isMobile
-                ? 0
-                : `calc(((100vw - 30px) / 5) * ${index} + 30px)`,
-            }}
-          >
-            <div className={styles.iconWrapper}>
-              <img src={item.icon} className={styles.icon} alt="icon" />
-            </div>
-            <div className={styles.textWrapper}>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+
+      <motion.div className={styles.wrapper}>
+        <motion.div
+          className={styles.role}
+          style={{
+            opacity: roleOpacity,
+          }}
+        >
+          <p>
+            <b>역할:</b> 프론트엔드 개발, 백엔드 개발, 기획 및 디자인
+          </p>
+        </motion.div>
+
+        <div className={styles.techListWrapper}>
+          {techStackList.map((item, index) => (
+            <motion.div
+              key={`${item.title}_${index}`}
+              className={styles.techItem}
+              style={{
+                opacity: featureOpacity[index],
+              }}
+            >
+              <div className={styles.iconWrapper}>
+                <img src={item.icon} className={styles.icon} alt="icon" />
+              </div>
+              <div className={styles.textWrapper}>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
     </div>
   );
 };
