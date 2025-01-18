@@ -17,7 +17,7 @@ const techStackList = [
   },
   {
     title: "Vercel",
-    description: "Next.js 배포에 최적화 빠르고 안정적인 배포",
+    description: "안정적인 빠른 Next JS 프로젝트 배포",
     icon: "https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/vercel.svg",
   },
   {
@@ -62,77 +62,33 @@ export const TechStack = ({ lang }: Props) => {
     );
   });
 
-  const firstRow = techStackList.slice(0, 3); // 첫 번째 줄 (3개)
-  const secondRow = techStackList.slice(3); // 두 번째 줄 (2개)
-
   return (
     <div className={styles.footerContainer} ref={container}>
       <motion.h1 className={styles.title} style={{ opacity: titleOpacity }}>
         기술 스택
       </motion.h1>
       <div className={styles.techListWrapper}>
-        {isMobile ? (
-          <>
-            {/* 첫 번째 줄 */}
-            <div className={styles.techRow}>
-              {firstRow.map((item, index) => (
-                <motion.div
-                  key={`${item.title}_${index}`}
-                  className={styles.techItem}
-                  style={{
-                    top: "20vh",
-                    opacity: featureOpacity[index],
-                    left: `calc(((100vw - 20px) / 3) * ${index})`,
-                  }}
-                >
-                  <div className={styles.iconWrapper}>
-                    <img src={item.icon} className={styles.icon} alt="icon" />
-                  </div>
-                  <h3>{item.title}</h3>
-                </motion.div>
-              ))}
+        {techStackList.map((item, index) => (
+          <motion.div
+            key={`${item.title}_${index}`}
+            className={styles.techItem}
+            style={{
+              opacity: featureOpacity[index],
+              top: isMobile ? `calc(12vh + ${index * 120}px)` : 0,
+              left: isMobile
+                ? 0
+                : `calc(((100vw - 30px) / 5) * ${index} + 30px)`,
+            }}
+          >
+            <div className={styles.iconWrapper}>
+              <img src={item.icon} className={styles.icon} alt="icon" />
             </div>
-            {/* 두 번째 줄 */}
-            <div className={styles.techRow}>
-              {secondRow.map((item, index) => (
-                <motion.div
-                  key={`${item.title}_${index + firstRow.length}`}
-                  className={styles.techItem}
-                  style={{
-                    top: "50vh",
-                    left: `calc(((100vw - 20px) / 2) * ${index} + 30px)`,
-
-                    opacity: featureOpacity[index + firstRow.length],
-                  }}
-                >
-                  <div className={styles.iconWrapper}>
-                    <img src={item.icon} className={styles.icon} alt="icon" />
-                  </div>
-                  <h3>{item.title}</h3>
-                </motion.div>
-              ))}
-            </div>
-          </>
-        ) : (
-          // 데스크톱에서는 기존 레이아웃 유지
-          techStackList.map((item, index) => (
-            <motion.div
-              key={`${item.title}_${index}`}
-              className={styles.techItem}
-              style={{
-                opacity: featureOpacity[index],
-                top: isMobile ? "15vh" : 0,
-                left: `calc(((100vw - 100px) / 5) * ${index} + 30px)`,
-              }}
-            >
-              <div className={styles.iconWrapper}>
-                <img src={item.icon} className={styles.icon} alt="icon" />
-              </div>
+            <div className={styles.textWrapper}>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
-            </motion.div>
-          ))
-        )}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
