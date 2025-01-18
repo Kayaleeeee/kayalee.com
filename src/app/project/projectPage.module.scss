@@ -302,7 +302,7 @@
         h3 {
           margin: 15px;
           text-align: center;
-          font-size: max(1.5vw, 24px);
+          font-size: max(1.5vw, 22px);
 
           @include mq.mobile {
             margin: 0;
@@ -316,6 +316,7 @@
 
           @include mq.mobile {
             padding: 10px 0;
+            font-size: 16px;
             text-align: left;
           }
         }
@@ -340,11 +341,11 @@
 
         @include mq.mobile {
           padding: 10px 0;
-          width: 70px;
-          height: 70px;
+          width: 60px;
+          height: 60px;
 
           .icon {
-            width: 50px;
+            width: 40px;
           }
         }
       }
