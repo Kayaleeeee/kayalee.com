@@ -47,13 +47,9 @@ export const TechStack = ({ lang }: Props) => {
   const roleOpacity = useTransform(scrollYProgress, [0, 0.2, 0.86], [0, 1, 1]);
 
   const featureOpacity = techStackList.map((_, index) => {
-    const start = index * 0.2 + 0.2; // 이전 요소와 간격 늘리기
+    const start = index * 0.05 + 0.2;
 
-    return useTransform(
-      scrollYProgress,
-      [0, start], // 완전히 사라졌다가 잠시 멈춘 후 나타남
-      [0, 1] // 나타났다 완전히 사라짐
-    );
+    return useTransform(scrollYProgress, [0, start], [0, 1]);
   });
 
   return (
