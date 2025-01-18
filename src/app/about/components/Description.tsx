@@ -2,7 +2,6 @@ import { useTransform, motion, useScroll, MotionValue } from "motion/react";
 import styles from "../aboutPage.module.scss";
 import { useEffect, useRef } from "react";
 import Image, { StaticImageData } from "next/image";
-import Lenis from "lenis";
 import Picture1 from "../../../../public/1.jpg";
 import Picture2 from "../../../../public/2.jpg";
 import Picture3 from "../../../../public/3.jpg";
@@ -19,17 +18,6 @@ export const Description = ({ lang }: Props) => {
     target: container,
     offset: ["start end", "end start"],
   });
-
-  useEffect(() => {
-    const lenis = new Lenis();
-
-    const raf = (time: number) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-
-    requestAnimationFrame(raf);
-  }, []);
 
   const { description } = translationText["description"][lang];
 

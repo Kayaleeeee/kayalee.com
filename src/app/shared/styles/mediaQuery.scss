@@ -1,5 +1,5 @@
 // variables
-$mobile-breakpoint: 768px;
+$mobile-breakpoint: 500px;
 
 @mixin mobile {
   @media (max-width: $mobile-breakpoint) {
