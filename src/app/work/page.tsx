@@ -25,7 +25,7 @@ const workHistory = [
       "베트남 로컬 커머스 플랫폼 Lienmall 앱 / 웹 개발",
       "베트남 판매자들을 위한 어드민 서비스 개발",
     ],
-    tech: ["Next JS", "React Native", "React", "Redux", "Typescript"],
+    tech: ["Next.js", "React Native", "React", "Redux", "Typescript"],
     logo: "/icons/payap.jpeg",
   },
   {
@@ -33,7 +33,7 @@ const workHistory = [
     period: "2020.12 - 2021.5",
     position: "Frontend Developer",
     description: ["한국에 거주하는 외국인을 대상으로 한 커머스 플랫폼 개발"],
-    tech: ["Next JS"],
+    tech: ["Next.js"],
     logo: "/icons/enkor.jpeg",
   },
 ];
