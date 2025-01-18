@@ -5,7 +5,7 @@ import { useScroll, motion, useTransform } from "motion/react";
 
 const techStackList = [
   {
-    title: "Next JS",
+    title: "Next.js",
     description: "간편한 라우팅과 서버리스 API 작성을 지원",
     icon: "https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/nextdotjs.svg",
   },
@@ -16,7 +16,7 @@ const techStackList = [
   },
   {
     title: "Vercel",
-    description: "안정적인 빠른 Next JS 프로젝트 배포",
+    description: "안정적인 빠른 Next.js 프로젝트 배포",
     icon: "https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/vercel.svg",
   },
   {
