@@ -15,7 +15,6 @@ import {
   LanguageType,
   mapLanguageToKey,
 } from "./utils/getCurrentLanguage";
-import { useSmoothScroll } from "../shared/hooks/useSmoothScroll";
 
 const langList: { key: LanguageType; value: string }[] = [
   { key: "KR", value: "한국어" },
@@ -51,8 +50,6 @@ const AboutPage = () => {
 
     configureLanguageByCookie();
   }, []);
-
-  useSmoothScroll();
 
   if (!currentLang) return null;
 

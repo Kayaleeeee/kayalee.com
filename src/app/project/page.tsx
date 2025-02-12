@@ -1,15 +1,12 @@
 "use client";
 
 import Head from "next/head";
-import { useSmoothScroll } from "../shared/hooks/useSmoothScroll";
 import { Hero } from "./Hero";
 import { MainFeature } from "./MainFeature";
 import { Problem } from "./Problem";
 import { TechStack } from "./TechStack";
 
 const ProjectPage = () => {
-  useSmoothScroll();
-
   return (
     <>
       <Head>
