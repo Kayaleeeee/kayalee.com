@@ -109,6 +109,7 @@
 
   .scrollContainer {
     @include relative-container;
+    will-change: transform;
   }
 
   .slide {
@@ -140,7 +141,6 @@
       line-height: 1;
       font-weight: bold;
       font-size: max(5.5vw, 52px);
-      text-transform: uppercase;
     }
   }
 }
@@ -163,6 +163,7 @@
     border-radius: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
+    will-change: transform;
   }
 
   .text {
@@ -236,8 +237,7 @@
 
     .text {
       font-size: min(6px, 10px);
-      text-transform: uppercase;
-      fill: red; // inline style moved here
+      fill: red;
     }
   }
 
@@ -253,7 +253,8 @@
       justify-content: center;
       gap: 3rem;
       align-items: center;
-      padding: 2.5rem; // equivalent to p-10
+      padding: 2.5rem;
+      will-change: transform;
     }
 
     .logo {

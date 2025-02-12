@@ -1,6 +1,6 @@
 import { useTransform, motion, useScroll, MotionValue } from "motion/react";
 import styles from "../aboutPage.module.scss";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image, { StaticImageData } from "next/image";
 import Picture1 from "../../../../public/1.jpg";
 import Picture2 from "../../../../public/2.jpg";
@@ -79,9 +79,9 @@ const Slide = (props: {
       style={{ x: translateX, left: props.left }}
       className={styles.scrollContainer}
     >
-      <Phrase src={props.src} text={"e-commerce"} />
-      <Phrase src={props.src} text={"fandom platform"} />
-      <Phrase src={props.src} text={"global business"} />
+      <Phrase src={props.src} text={"E-COMMERCE"} />
+      <Phrase src={props.src} text={"FANDOM PLATFORM"} />
+      <Phrase src={props.src} text={"GLOBAL BUSINESS"} />
     </motion.div>
   );
 };

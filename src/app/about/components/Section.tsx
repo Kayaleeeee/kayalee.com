@@ -22,11 +22,6 @@ export const Section = ({ lang }: Props) => {
   ); // 원 크기 변화
   const circleX = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]); // 원 위치 변화
   const circleY = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]); // 원 위치 변화
-  const textOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.5, 0.6, 1],
-    [0.3, 1, 1, 0]
-  ); // 텍스트 사라짐
 
   return (
     <div ref={containerRef} className={styles.sectionContainer}>
@@ -38,12 +33,7 @@ export const Section = ({ lang }: Props) => {
           y: circleY,
         }}
       />
-      <motion.div
-        className={styles.text}
-        style={{
-          opacity: textOpacity,
-        }}
-      >
+      <div className={styles.text}>
         {lang === "KR" ? (
           <p>
             <span className={styles.highlight}>아름다운 UI</span>와{" "}
@@ -62,7 +52,7 @@ export const Section = ({ lang }: Props) => {
             and impactful user experiences
           </p>
         )}
-      </motion.div>
+      </div>
     </div>
   );
 };

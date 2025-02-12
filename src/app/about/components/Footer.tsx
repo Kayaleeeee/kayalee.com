@@ -40,7 +40,7 @@ export const Footer = ({ lang }: Props) => {
           id="curve"
           d="m0,88.5c61.37,0,61.5-68,126.5-68,58,0,51,68,123,68"
         />
-        <text className={styles.text} style={{ fill: "red" }}>
+        <text className={styles.text}>
           {[...Array(3)].map((_, i) => {
             return (
               <textPath
@@ -63,7 +63,7 @@ export const Footer = ({ lang }: Props) => {
 };
 
 const Logos = ({ scrollProgress }: { scrollProgress: MotionValue<number> }) => {
-  const y = useTransform(scrollProgress, [0, 1], [-700, 0]);
+  const y = useTransform(scrollProgress, [0, 1], [-200, 0]);
   const iconList = [
     {
       label: "linkedIn",
