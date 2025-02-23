@@ -22,6 +22,7 @@
   justify-content: center;
   font-size: max(3vw, 24px);
   pointer-events: none;
+  will-change: opacity;
 }
 
 .heroWrapper {
@@ -93,6 +94,7 @@
       max-width: min(50vw, 500px);
       padding: 1rem 1.5rem;
       position: relative;
+      will-change: opacity;
 
       @include mq.mobile {
         max-width: 70vw;
@@ -157,6 +159,7 @@
   .featureItemWrapper {
     width: 100%;
     height: 100vh;
+    will-change: opacity;
 
     .featureItem {
       @include section-wrapper();
@@ -298,6 +301,7 @@
       height: 300px;
       width: 100%;
       padding: 8px 16px;
+      will-change: opacity;
 
       @include mq.mobile {
         top: 10px;

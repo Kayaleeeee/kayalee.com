@@ -1,7 +1,6 @@
 import { HTMLAttributes, useRef } from "react";
 import styles from "./projectPage.module.scss";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useIsMobile } from "../shared/hooks/useIsMobile";
 
 const problemList = [
   "800개가 넘는 장비를 엑셀로 관리하기 너무 힘들어요 💽",
@@ -21,7 +20,6 @@ export const Problem = () => {
   const container = useRef<HTMLDivElement>(null);
 
   const fadeOutEnd = 0.75;
-  const isMobile = useIsMobile();
 
   const { scrollYProgress } = useScroll({
     target: container,
