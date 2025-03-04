@@ -272,8 +272,9 @@
 
     .role {
       @include section-wrapper();
-
+      padding-bottom: 2rem;
       font-size: max(1vw, 20px);
+
       @include mq.mobile {
         padding: 12px 16px;
       }
