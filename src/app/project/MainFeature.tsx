@@ -123,7 +123,7 @@ export const MainFeature = () => {
           <div
             style={{
               position: "fixed",
-              ...(isMobile ? { bottom: "10svh" } : { top: "35vh" }),
+              bottom: "10vh",
             }}
           >
             <Video />
