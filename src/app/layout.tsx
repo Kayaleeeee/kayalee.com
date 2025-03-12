@@ -3,6 +3,7 @@ import { Hahmlet } from "next/font/google";
 import "./globals.scss";
 import { NavBar } from "./shared/components";
 import { PageTransition } from "./shared/components";
+import { AmplitudeProvider } from "./shared/components/Amplitude/AmplitudeProvider";
 
 const hehmlet = Hahmlet({
   variable: "--font-hahmlet",
@@ -39,6 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${hehmlet.variable} ${notoSans.variable}`}>
+        <AmplitudeProvider />
         <NavBar />
         <PageTransition>
           <div>{children}</div>
